@@ -1,0 +1,6 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  top.dqit.common.framework.ErrorPageConfig,\
+  top.dqit.common.framework.ExceptionAdvice,\
+  top.dqit.common.framework.RemoteAddressAspect,\
+  top.dqit.common.framework.RestLogAspect,\
+  top.dqit.common.framework.SwaggerConfig

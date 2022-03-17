@@ -1,0 +1,13 @@
+FROM openjdk:8-jre
+
+MAINTAINER mr_hqing@163.com
+
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
+WORKDIR /spring-cloud-demo
+
+EXPOSE 8080
+
+ADD ./target/system-user-0.0.1-SNAPSHOT.jar ./
+
+CMD ["java","-Djava.security.egd=file:/dev/./urandom", "-Duser.timezone=Asia/Shanghai", "-jar system-user-0.0.1-SNAPSHOT.jar"]

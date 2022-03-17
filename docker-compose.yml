@@ -1,0 +1,20 @@
+version: '3'
+services:
+
+  system-user:
+    container_name: system-user
+    build:
+      context: ./system-user
+    image: system-user
+    ports:
+      - "8080:8080"
+
+  system-gateway:
+    container_name: system-gateway
+    build:
+      context: ./system-gateway
+    image: system-gateway
+    ports:
+      - "80:80"
+    depends_on:
+      - system-user

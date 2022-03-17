@@ -3,9 +3,22 @@
 💡整体状态：目前处于0阶段
 
 ## 下一步计划：
-1. 入参日志脱敏
-2. 整合 SpringSecurity 完成登录和鉴权
-3. dockerfile
+
+技术计划：
+- [x] 入参日志脱敏
+- [ ] ~~整合 SpringSecurity 完成登录和鉴权~~
+- [x] dockerfile
+- [ ] 替换 white page
+- [x] NacosDiscovery 整合
+- [ ] NacosConfig 整合
+- [x] Gateway网关整合
+- [ ] 网关鉴权
+- [ ] 接口鉴权SDK
+- [ ] 自定义安全框架
+- [ ] 其他...
+
+业务计划：
+- [ ] 待构思...
 
 ## 子模块说明
 

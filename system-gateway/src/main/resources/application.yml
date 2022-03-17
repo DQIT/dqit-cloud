@@ -1,0 +1,27 @@
+server:
+  port: 80
+spring:
+  application:
+    name: system-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: service-user
+          uri: lb://system-user
+          predicates:
+            - Path=/system-user/**
+          filters:
+            - SwaggerHeaderFilter
+            - StripPrefix=1
+    nacos:
+      discovery:
+        namespace: public
+        password: nacos
+        server-addr: localhost:8848
+        username: nacos
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 3000 # 服务连接超时
+        readTimeout: 30000 # 服务等待超时

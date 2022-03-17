@@ -1,9 +1,10 @@
+server:
+  port: 8080
 spring:
   datasource:
     username: root
     password: root
-    url: jdbc:mysql://localhost:3306/spring-cloud-demo
+    url: jdbc:mysql://localhost:3306/dqit-cloud
 common:
   swagger:
     enable: true
-    group-name: "System User"
