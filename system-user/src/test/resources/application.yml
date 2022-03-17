@@ -1,0 +1,17 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: system-user
+  datasource:
+    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+    schema: classpath:db/schema-h2.sql
+    data: classpath:db/data-h2.sql
+    url: jdbc:p6spy:h2:mem:dqit-cloud
+    username: root
+    password: root
+
+# test过程，关闭swagger
+common:
+  swagger:
+    enable: false

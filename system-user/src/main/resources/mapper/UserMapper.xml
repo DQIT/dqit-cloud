@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="top.dqit.cloud.system.user.mapper.UserMapper">
+	<select id="getByLoginName" resultType="top.dqit.cloud.system.user.model.entity.User">
+		select u.id, u.name, u.login_password, u.gender, u.born_date
+		from t_sys_user u,
+		     t_sys_user_login ul
+		where u.id = ul.user_id
+		  and ul.login_name = #{loginName}
+		  and ul.is_deleted = 0
+		  and u.is_deleted = 0
+		limit 1
+	</select>
+</mapper>

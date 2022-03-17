@@ -1,5 +1,6 @@
 package top.dqit.cloud.system.user.constants;
 
+import com.baomidou.mybatisplus.annotation.EnumValue;
 import lombok.Getter;
 
 /**
@@ -26,6 +27,7 @@ public enum UserLoginMode {
 	 */
 	USERNAME("username", "用户名");
 	
+	@EnumValue
 	private final String code;
 	private final String name;
 	

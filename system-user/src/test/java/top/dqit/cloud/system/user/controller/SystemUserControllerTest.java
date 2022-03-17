@@ -2,6 +2,7 @@ package top.dqit.cloud.system.user.controller;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,7 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import top.dqit.cloud.system.user.model.RegisterForm;
 import top.dqit.cloud.system.user.model.UserInfo;
-import top.dqit.cloud.system.user.repository.UserRepository;
 import top.dqit.common.model.Result;
 
 /**
@@ -28,8 +28,6 @@ public class SystemUserControllerTest {
 	
 	@Autowired
 	private TestRestTemplate testRestTemplate;
-	@Autowired
-	private UserRepository userRepository;
 	
 	/**
 	 * TEST: /user/register
@@ -37,16 +35,13 @@ public class SystemUserControllerTest {
 	 */
 	@Test
 	public void registerTest() {
+		String url = "/user/register";
+		String param = "{\"loginName\": \"test-user2\", \"loginPassword\": \"test-password\"}";
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
-		String param = SystemUserControllerTestConstants.registerTestJsonParam;
 		HttpEntity<String> httpEntity = new HttpEntity<>(param, headers);
-		ResponseEntity<Result> responseEntity = testRestTemplate.postForEntity(
-				SystemUserControllerTestConstants.registerTestUrl,
-				httpEntity,
-				Result.class
-		);
-		Assert.assertNotNull(responseEntity);
+		ResponseEntity<Result> responseEntity = testRestTemplate.postForEntity(url, httpEntity, Result.class);
+		Assertions.assertNotNull(responseEntity);
 		Result<Object> body = responseEntity.getBody();
 		Assert.assertNotNull(body);
 		Assert.assertTrue(body.getSuccess());
@@ -57,25 +52,16 @@ public class SystemUserControllerTest {
 	 * {@link top.dqit.cloud.system.user.controller.SystemUserController#getCurrentUserInfo(String)}
 	 */
 	@Test
-	public void getCurrentUserInfoTest(){
+	public void getCurrentUserInfoTest() {
+		String url = "/user/getCurrentUserInfo?loginName={1}";
+		String param = "test-user";
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		
-		ResponseEntity<Result> responseEntity = testRestTemplate.getForEntity(
-				SystemUserControllerTestConstants.getCurrentUserInfoTestUrl,
-				Result.class,
-				SystemUserControllerTestConstants.getCurrentUserInfoUrlParam
-		);
-		Assert.assertNotNull(responseEntity);
+		ResponseEntity<Result> responseEntity = testRestTemplate.getForEntity(url, Result.class, param);
+		Assertions.assertNotNull(responseEntity);
 		Result<UserInfo> body = responseEntity.getBody();
-		Assert.assertNotNull(body);
+		Assertions.assertNotNull(body);
 	}
 	
-	interface SystemUserControllerTestConstants {
-		String registerTestUrl = "/user/register";
-		String registerTestJsonParam = "{\"loginName\": \"test-user\", \"loginPassword\": \"test-password\"}";
-		
-		String getCurrentUserInfoTestUrl = "/user/getCurrentUserInfo?loginName={1}";
-		String getCurrentUserInfoUrlParam = "test-user";
-	}
 }

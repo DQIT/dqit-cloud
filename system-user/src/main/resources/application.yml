@@ -5,5 +5,3 @@ spring:
     name: system-user
   profiles:
     active: @active.profile@
-  jpa:
-    open-in-view: false

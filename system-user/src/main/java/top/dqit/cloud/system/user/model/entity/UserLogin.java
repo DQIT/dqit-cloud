@@ -1,54 +1,25 @@
 package top.dqit.cloud.system.user.model.entity;
 
-import top.dqit.common.model.BaseTableEntity;
-import top.dqit.cloud.system.user.constants.UserLoginMode;
-import lombok.*;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
-import org.hibernate.Hibernate;
-import org.hibernate.annotations.SQLDelete;
-import org.hibernate.annotations.Where;
+import top.dqit.cloud.system.user.constants.UserLoginMode;
+import top.dqit.common.model.BaseTableEntity;
 
-import javax.persistence.*;
-import java.util.Objects;
-
-@Entity
-@Table(name = "t_sys_user_login")
-@Getter
-@Setter
-@ToString
-@RequiredArgsConstructor
-@SQLDelete(sql = "update t_sys_user_login set is_deleted = 1 where id = ?")
-@Where(clause = "is_deleted = 0")
+@Data
+@EqualsAndHashCode(callSuper = true)
+@TableName("t_sys_user_login")
 @Accessors(chain = true)
 public class UserLogin extends BaseTableEntity {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
 	
-	@Column(name = "user_id", nullable = false)
-	private Long userId;
+	@TableField(value = "user_id")
+	private String userId;
 	
-	@Column(name = "login_name")
+	@TableField(value = "login_name")
 	private String loginName;
 	
-	@Column(name = "login_mode", nullable = false)
+	@TableField(value = "login_mode")
 	private UserLoginMode loginMode;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id", insertable = false, updatable = false, referencedColumnName = "id")
-	@ToString.Exclude
-	private User user;
-	
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-		UserLogin login = (UserLogin) o;
-		return id != null && Objects.equals(id, login.id);
-	}
-	
-	@Override
-	public int hashCode() {
-		return getClass().hashCode();
-	}
 }
