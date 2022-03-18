@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import top.dqit.cloud.system.user.model.entity.UserLogin;
 
 /**
- * 用户登录信息持久层
+ * 单元测试 UserLoginMapper
  * @author mr_hqing@163.com
  * @since 2022/3/12
  */
@@ -24,6 +24,8 @@ public class UserLoginMapperTest {
 	public void existsByLoginNameTest(){
 		Boolean exists = userLoginMapper.existsByLoginName("test_user");
 		Assertions.assertTrue(exists);
+		exists = userLoginMapper.existsByLoginName("test_user_not_exist");
+		Assertions.assertNull(exists);
 	}
 	
 	/**

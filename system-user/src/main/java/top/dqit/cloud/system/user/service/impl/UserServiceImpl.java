@@ -22,7 +22,7 @@ import java.util.Optional;
  * @since 2022/3/12
  */
 @Service
-@Transactional
+@Transactional(rollbackFor = {Exception.class})
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 	
 	@Autowired

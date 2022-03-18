@@ -5,3 +5,7 @@ spring:
     name: system-user
   profiles:
     active: @active.profile@
+  datasource:
+    druid:
+      test-while-idle: false
+      validation-query: "select 1"

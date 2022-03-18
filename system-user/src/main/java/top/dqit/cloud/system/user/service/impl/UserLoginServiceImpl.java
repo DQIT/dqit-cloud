@@ -14,7 +14,7 @@ import java.util.Optional;
  * @since 2022/3/18
  */
 @Service
-@Transactional
+@Transactional(rollbackFor = {Exception.class})
 public class UserLoginServiceImpl extends ServiceImpl<UserLoginMapper, UserLogin> implements UserLoginService {
 	
 	@Override
