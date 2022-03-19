@@ -2,7 +2,7 @@
 用于个人学习以及开发中一些点子的实现
 💡整体状态：目前处于0阶段
 
-![](/doc/images/DQIT-Cloud-Architecture.png)
+![](/doc/images/DQIT-Cloud-Archdiagram.png)
 
 ## 下一步计划：
 
